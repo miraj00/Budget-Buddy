@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ExpensesService } from 'src/app/services/expenses.service';
 
 @Component({
   selector: 'app-total-expenses',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TotalExpensesComponent implements OnInit {
 
-  constructor() { }
+  totalExpenses: number = 0;
+  totalBudget: number = 1000;
+
+  constructor(private expensesService:ExpensesService) { }
 
   ngOnInit(): void {
+    this.expensesService.totalExpenses.subscribe(newTotalExpenses => this.totalExpenses = newTotalExpenses);
   }
 
 }
